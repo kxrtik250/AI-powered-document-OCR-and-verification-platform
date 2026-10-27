@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base { body { @apply bg-[#f6f8fc] text-slate-800 antialiased; background-image: radial-gradient(circle at 90% -10%, rgb(20 184 166 / .12), transparent 26rem); } input, button, textarea { @apply focus:outline-none focus:ring-2 focus:ring-brand-500/40; } }
+@layer components { .card { @apply rounded-2xl border border-white/80 bg-white shadow-[0_12px_35px_-20px_rgba(15,23,42,.35)]; } .glass-card { @apply rounded-2xl border border-white/60 bg-white/75 shadow-[0_18px_45px_-25px_rgba(15,23,42,.4)] backdrop-blur; } .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-50; } .btn-primary { @apply btn bg-brand-500 text-white shadow-lg shadow-teal-900/15 hover:-translate-y-0.5 hover:bg-brand-700; } .btn-secondary { @apply btn border border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50; } .field { @apply mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm placeholder:text-slate-400; } .label { @apply text-sm font-semibold text-slate-700; } .eyebrow { @apply text-xs font-bold tracking-[.16em] text-brand-500; } }

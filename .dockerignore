@@ -1,0 +1,14 @@
+frontend/node_modules
+frontend/dist
+frontend/.vite
+backend/__pycache__
+backend/.pytest_cache
+.venv
+.pnpm-store
+.git
+.gitignore
+test_uploads
+uploads
+reports
+test_reports
+*.pyc

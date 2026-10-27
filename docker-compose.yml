@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: verisight
+      POSTGRES_USER: verisight
+      POSTGRES_PASSWORD: verisight
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U verisight -d verisight"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    env_file: backend/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://verisight:verisight@db:5432/verisight
+      UPLOAD_DIR: /data/uploads
+      REPORT_DIR: /data/reports
+      CORS_ORIGINS: http://localhost:8080
+    volumes:
+      - verification_data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+volumes:
+  postgres_data:
+  verification_data:
